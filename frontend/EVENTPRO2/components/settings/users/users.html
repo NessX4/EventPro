@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sensores del Cliente</title>
+  <link rel="stylesheet" href="/components/settings/users/users.css">
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/highcharts-more.js"></script>
+  <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+</head>
+<body>
+  <div class="main-container">
+    <div class="title-container">
+      <h1>Dashboard<span id="client-name"></span></h1>
+    </div>
+
+    <div class="sensor-cards">
+      <div class="sensor-card" id="temperature-card">
+        <div id="temperatureChart"></div>
+        <div id="temperatureGauge" class="gauge"></div>
+      </div>
+      <div class="sensor-card" id="humidity-card">
+        <div id="humidityChart"></div>
+        <div id="humidityGauge" class="gauge"></div>
+      </div>
+      <div class="sensor-card" id="light-card">
+        <div id="lightChart"></div>
+        <div id="lightGauge" class="gauge"></div>
+      </div>
+      <div class="sensor-card" id="rfid-card">
+        <h2>RFID</h2>
+        <div id="rfidTableContainer" class="table-container"></div>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <button class="left-button open-door" onclick="openDoor()">Abrir Puerta</button>
+      <button class="right-button close-door" onclick="closeDoor()">Cerrar Puerta</button>
+    </div>
+
+    <div class="back-button">
+      <button class="home-button" onclick="goBack()">Regresar al Home</button>
+    </div>
+  </div>
+
+  <script src="/components/settings/users/users.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', init);
+
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+</body>
+</html>

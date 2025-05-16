@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard del Administrador</title>
+  <link rel="stylesheet" href="/components/settings/sensors/sensors.css">
+</head>
+<body>
+  <div class="main-container">
+    <div class="title-container">
+      <h1>Dashboard del Administrador</h1>
+    </div>
+
+    <div class="sensor-cards">
+      <div id="clients-list">
+        <h2>Clientes y sus Sensores</h2>
+        <ul id="client-list">
+          <!-- Lista de clientes se generará aquí -->
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { init } from '/components/settings/sensors/sensors.js';
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

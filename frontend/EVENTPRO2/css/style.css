@@ -1,0 +1,81 @@
+:root {
+    --headerBackground: #1b3b2e; /* Verde oscuro similar al color de los árboles */
+    --footerBackground: #142923; /* Verde aún más oscuro */
+    --bodyBackground: black; /* Negro suave */
+    --contentBackground: #0b1d15; /* Verde oscuro casi negro para el contenido */
+    --highlightBackground: linear-gradient(135deg, #00FF99, #009966); /* Verde metálico degradado */
+    --sideMenuBackground: linear-gradient(180deg, #1b3b2e, #142923); 
+
+    --homeScreen: #e74c3c; /* Rojo vibrante */
+    --dashboard: #3498db; /* Azul brillante */
+    --myevents: #1abc9c; /* Verde azulado brillante */
+    --settings: #f1c40f; /* Amarillo dorado */
+    --comments: #e67e22; /* Naranja */
+    --information: #9b59b6; /* Púrpura */
+    --Myguests: #8e44ad; /* Púrpura oscuro */
+    --payments: #27ae60; /* Verde */
+    --userManagement:#0026ff;
+    --services:rgb(226, 8, 255);
+    --salon:#f1c40f;
+    --pdf:#7DDA58;
+    --pdf2:black;
+
+   
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Evita el scroll en el body */
+}
+
+/* Estilo para asegurar que el favicon sea circular */
+.link[rel="icon"] {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
+}
+
+
+#header {
+    height: 60px;
+    background: var(--headerBackground);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; /* Asegura que el encabezado esté por encima del contenido */
+    position: relative;
+}
+
+#body {
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden; /* Evita el scroll en el body */
+    position: relative;
+}
+
+#sidemenu {
+    width: 400px;
+    background: var(--sideMenuBackground);
+    position: fixed; /* Fija la posición del menú lateral */
+ /* Alinea el menú con el encabezado */
+    bottom: 0;
+    z-index: 2000; /* Asegura que esté por encima del contenido */
+    overflow-y: auto; /* Permite el scroll dentro del menú si es necesario */
+}
+
+#content {
+    width: 100%; /* Asegura que el contenido ocupe todo el ancho disponible */
+    background: var(--contentBackground);
+    overflow-y: auto; /* Permite el scroll en el contenido */
+    padding: 20px; /* Agrega un padding para mejor visualización */
+    position: relative;
+    z-index: 500; /* Asegura que el contenido esté debajo del menú */
+}

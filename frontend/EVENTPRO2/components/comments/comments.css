@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --bodyBackground: #121212;
+    --containerBackground: #0b1d15;
+    --textColor: #ecf0f1;
+    --highlightBackground: linear-gradient(135deg, #00FF99, #009966);
+    --ledGlowColor: rgba(0, 255, 153, 0.5);
+    --glow-color: rgb(0, 255, 153);
+    --glow-spread-color: rgba(0, 255, 153, 0.781);
+    --enhanced-glow-color: rgb(173, 255, 230);
+    --btn-color: rgb(0, 102, 51);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.main-container {
+    text-align: center;
+}
+
+.title-container {
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
+.title-container h1 {
+    font-size: 2.5rem;
+    background: var(--highlightBackground);
+    -webkit-background-clip: text;
+    color: transparent;
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+
+.title-container h1::before {
+    left: 4px;
+}
+
+.title-container h1::after {
+    right: -5px;
+}
+
+
+
+.comment-button {
+    --glow-color: rgb(0, 255, 153);
+    --glow-spread-color: rgba(0, 255, 153, 0.781);
+    --enhanced-glow-color: rgb(173, 255, 200);
+    --btn-color: rgb(0, 102, 51);
+    border: .25em solid var(--glow-color);
+    padding: 1em 3em;
+    color: var(--glow-color);
+    font-size: 15px;
+    font-weight: bold;
+    background-color: var(--btn-color);
+    border-radius: 1em;
+    outline: none;
+    box-shadow: 0 0 1em .25em var(--glow-color),
+                0 0 4em 1em var(--glow-spread-color),
+                inset 0 0 .75em .2em var(--glow-color);
+    text-shadow: 0 0 .5em var(--glow-color);
+    position: relative;
+    transition: all 0.3s;
+    text-decoration: none;
+    margin-top: 100px;
+    display: inline-block;
+}
+
+.comment-button::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 120%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--glow-spread-color);
+    filter: blur(2em);
+    opacity: .7;
+    transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+}
+
+.comment-button:hover {
+    color: var(--btn-color);
+    background-color: var(--glow-color);
+    box-shadow: 0 0 1em .25em var(--glow-color),
+                0 0 4em 2em var(--glow-spread-color),
+                inset 0 0 .75em .25em var(--glow-color);
+}
+
+.comment-button:active {
+    box-shadow: 0 0 0.6em .25em var(--glow-color),
+                0 0 2.5em 2em var(--glow-spread-color),
+                inset 0 0 .5em .25em var(--glow-color);
+}

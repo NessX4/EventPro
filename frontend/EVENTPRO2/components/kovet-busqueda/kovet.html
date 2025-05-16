@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir y Mostrar Imágenes</title>
+    <link rel="stylesheet" href="/components/kovet-busqueda/kovet.css">
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+      </head>
+</head>
+<body>
+    <button class="button" onclick="window.history.back()">
+        <p class="button__text">
+          <span style="--index: 0;">R</span>
+          <span style="--index: 1;"></span>
+          <span style="--index: 2;">E</span>
+          <span style="--index: 3;"></span>
+          <span style="--index: 4;">G</span>
+          <span style="--index: 5;"></span>
+          <span style="--index: 6;">R</span>
+          <span style="--index: 7;"> </span>
+          <span style="--index: 8;">E</span>
+          <span style="--index: 9;"></span>
+          <span style="--index: 10;">S</span>
+          <span style="--index: 11;"> </span>
+          <span style="--index: 12;">A</span>
+          <span style="--index: 13;"></span>
+          <span style="--index: 14;">R</span>
+          <span style="--index: 15;"></span>
+        </p>
+      
+        <div class="button__circle">
+          <svg
+            viewBox="0 0 14 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="button__icon"
+            width="14"
+          >
+            <path
+              d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+              fill="currentColor"
+            ></path>
+          </svg>
+      
+          <svg
+            viewBox="0 0 14 15"
+            fill="none"
+            width="14"
+            xmlns="http://www.w3.org/2000/svg"
+            class="button__icon button__icon--copy"
+          >
+            <path
+              d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+              fill="currentColor"
+            ></path>
+          </svg> 
+        </div>
+      </button>
+   
+      <div class="card">
+        <div class="loader">
+            <p class="letter">Kovet</p>
+            <p class="letter">&nbsp;</p>
+          <div class="words">
+            <span class="word">herramientas</span>
+            <span class="word">catálogos</span>
+            <span class="word">hospitality</span>
+            <span class="word">ordenes</span>
+            <span class="word">remedy</span>
+          </div>
+        </div>
+      </div>
+      
+    <form id="uploadForm" enctype="multipart/form-data">
+    </form>
+
+    <div id="response"></div>
+  
+  <div id="insertModal" class="insert-modal">
+        <div class="modal-content-insert">
+          
+            <button class="InsertClose" onclick="cerrarInsertModal()">Cerrar</button>
+            <div class="modal-body">
+                <!-- Columna para la imagen -->
+                <div class="left-column">
+                    <h2>Agrega tu imagen aqui</h2>
+                    <div id="dragArea" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
+            
+                        <img id="previewImage" class="preview-Image" width="300" />
+                        <input type="file" id="imagen" name="imagen" class="modal-image" style="display:none;" onchange="handleFileChange(event)">
+                    </div>
+                </div>
+                <!-- Columna para el formulario -->
+                <div class="right-column">
+                    <form id="formInsert" enctype="multipart/form-data">
+                        <div>
+                            <label for="familia">Familia:</label>
+                            <input type="text" id="familia" name="familia" required><br><br>
+                        </div>
+                        
+                        <label for="codigoInterno">Código Interno:</label>
+                        <input type="text" id="codigoInterno" name="codigoInterno" required><br><br>
+    
+                        <label for="description">Descripción:</label>
+                        <input type="text" id="description" name="description" required><br><br>
+    
+                        <label for="orden">Orden:</label>
+                        <input type="text" id="orden" name="igualdadOrden" required><br><br>
+    
+                        <label for="seatType">Seat Type:</label>
+                        <input type="text" id="seatType" name="SeatType" required><br><br>
+    
+                        <label for="ancho">Ancho (″):</label>
+                        <input type="text" id="ancho" name="w" required><br><br>
+    
+                        <label for="profundidad">Profundidad (″):</label>
+                        <input type="text" id="profundidad" name="d" required><br><br>
+    
+                        <label for="altura">Altura (″):</label>
+                        <input type="text" id="altura" name="h" required><br><br>
+    
+                        <label for="alturaBrazo">Altura del Brazo (″):</label>
+                        <input type="text" id="alturaBrazo" name="ah" required><br><br>
+    
+                        <label for="alturaAsiento">Altura del Asiento (″):</label>
+                        <input type="text" id="alturaAsiento" name="sh" required><br><br>
+    
+                        <button type="button" onclick="enviarDatos()" class="comic-button">Insertar</button>
+                    </form>
+                </div>
+                    </div>
+                </div>
+                     </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="model-buscador" class="insert-modal">
+  <div class="modal-content-insert" style="height: 500px;">
+    <button class="InsertClose" onclick="cerrarBuscador()">Cerrar</button>
+    <div class="modal-body">
+      <!-- Columna izquierda: Diseño interactivo de carpeta -->
+      <div class="left-column">
+        <h2>Agrega tu imagen aquí</h2>
+        <div class="container">
+          <div class="folder">
+            <div class="front-side">
+              <div class="tip"></div>
+              <div class="cover"></div>
+            </div>
+            <div class="back-side cover"></div>
+          </div>
+          <label class="custom-file-upload">
+            <input class="title" type="file" id="file-input" accept="image/*" onchange="updateFileName()" />
+            Choose a file
+          </label>
+        </div>
+      </div>
+
+      <!-- Columna derecha: Formulario -->
+      <div class="right-column-Buscador">
+        <form id="formInsert" enctype="multipart/form-data">
+          <div>
+            <label for="codigoInterno">Código Interno:</label>
+            <input type="text" id="codigoInterno" name="codigoInterno" required><br><br>
+          </div>
+
+          <div>
+            <label for="familia">Familia:</label>
+            <input type="text" id="familia" name="familia" required><br><br>
+          </div>
+
+          <div>
+            <label for="description">Descripción:</label>
+            <input type="text" id="description" name="description" required><br><br>
+          </div>
+
+          <div>
+            <label for="w">Ancho (″):</label>
+            <input type="text" id="w" name="w" required><br><br>
+          </div>
+
+          <div>
+            <label for="d">Profundidad (″):</label>
+            <input type="text" id="d" name="d" required><br><br>
+          </div>
+
+          <div>
+            <label for="h">Altura (″):</label>
+            <input type="text" id="h" name="h" required><br><br>
+          </div>
+
+          <div>
+            <label for="ah">Altura del Brazo (″):</label>
+            <input type="text" id="ah" name="ah" required><br><br>
+          </div>
+
+          <div>
+            <label for="sh">Altura del Asiento (″):</label>
+            <input type="text" id="sh" name="sh" required><br><br>
+          </div>
+
+          <button type="button" onclick="enviarDatos()" class="comic-button">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <table>
+        <tr>
+            <td class="s0" colspan="3" rowspan="2">
+              <button onclick="abrirInsertModal()" class="Btn" title="Crear">
+                <span class="svgContainer">
+                    <!-- Ícono de signo + ajustado hacia arriba -->
+                    <svg fill="white" class="svgIcon" viewBox="0 0 448 512" height="1.5em" xmlns="http://www.w3.org/2000/svg" style="display: block; margin: auto; transform: translateY(-2px);">
+                        <path d="M224 112c-13.3 0-24 10.7-24 24v136H64c-13.3 0-24 10.7-24 24s10.7 24 24 24h136v136c0 13.3 10.7 24 24 24s24-10.7 24-24V320h136c13.3 0 24-10.7 24-24s-10.7-24-24-24h-136V136c0-13.3-10.7-24-24-24z" stroke="white" stroke-width="30"></path>
+                    </svg>
+                </span>
+                <span class="BG"></span>
+            </button>
+            
+              <button class="Btn-Buscador" onclick="abrirBuscador()">
+                <span class="svgContainer-Buscador" title="Buscar">
+                  <!-- Ícono de lupa con círculo interno y trazo más fino -->
+                  <svg fill="none" class="svgIcon-Buscador" viewBox="0 0 512 512" height="1.8em" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="216" cy="216" r="140" stroke="white" stroke-width="50" />
+                    <line x1="337" y1="337" x2="460" y2="460" stroke="white" stroke-width="50" />
+                  </svg>
+                </span>
+                <span class="BG-Buscador"></span>
+              </button>
+            </td>
+            
+            <td class="s1" colspan="3" rowspan="2">
+                <div style="width:515px; height:41px; background-color: #fff;">
+                    <img src="/assents/kovet33.png" style="width: 100%; height: 100%; object-fit: scale-down; object-position: center; color:white;">
+                </div>
+            </td>
+            <td colspan="9" rowspan="2">SEGUIMIENTO</td>
+            <td class="s3" colspan="5" rowspan="2">ING 010 24 REV 4</td>
+            <td colspan="5">Elaborado por: Marco Pérez</td>
+        </tr>
+        <tr style="height: 20px;">
+          <td colspan="5" id="fecha">Fecha: </td>
+        </tr>
+        <tr>
+            <td class="borrar" rowspan="2">Borrar</td>
+            <td class="s5" rowspan="2">No.</td>
+            <td class="s6" rowspan="2">IMAGEN</td>
+            <td class="s6" rowspan="2">FAMILIA</td>
+            <td class="s5" rowspan="2">CÓDIGO INTERNO<br>KOVET SKU</td>
+            <td class="s5" rowspan="2">DESCRIPCIÓN</td>
+            <td class="s6" rowspan="2">ESTADO DE AVANCE</td>
+            <td class="s9" rowspan="2">SEAT&nbsp;TYPE</td>
+            <td class="s5" rowspan="2">W</td>
+            <td class="s5" rowspan="2">D</td>
+            <td class="s5" rowspan="2">H</td>
+            <td class="s5" rowspan="2">AH</td>
+            <td class="s5" rowspan="2">SH</td>
+            <td class="s6" rowspan="2">ORDEN DE<br>IGUALDAD</td>
+            <td class="s7" colspan="3">CADS</td>
+            <td class="s7" colspan="5">MADERA</td>
+            <td class="s7" colspan="3">DIGITALIZADO</td>
+            <td class="s4" rowspan="2">BOMS</td>
+            <td class="s2" rowspan="2">QC<br>VALIDACIÓN</td>
+        </tr>
+        <tr style="height: 20px;">
+            <td class="s5">CAD</td>
+            <td class="s5">NUBE</td>
+            <td class="s6">VERSIÓN</td>
+            <td class="s5">FRAME<br>ENSAMBLE</td>
+            <td class="s5">MADERA<br>EXPUESTA</td>
+            <td class="s5">CNC</td>
+            <td class="s5">KAIZEN</td>
+            <td class="s8">COMENTARIOS</td>
+            <td class="s5">TELA</td>
+            <td class="s8">FOAM</td>
+            <td class="s6">KURIS</td>
+        </tr>
+        <div id="pagination">
+            
+        </div>
+        <tbody id="imageTable">
+            <!-- Las filas de las imágenes se agregarán aquí -->
+        </tbody>
+        </div>
+    </table>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <!-- Aquí está la imagen que se actualizará al arrastrar una nueva imagen -->
+            <img id="modalImage" alt="Imagen seleccionada" class="modal-image" width="300"/>
+            <div id="modalInfo"></div>
+            <!-- El botón de cerrar -->
+            <button class="change" onclick="closeModal()">Cerrar</button>
+        </div>
+    </div>
+    <script src="/components/kovet-busqueda/kovet.js"></script>
+    <script src="/components/kovet-busqueda/kovet-modulos/Buscador.js"></script>
+</body>
+</html>
+<!-- actualizar tabla 
+
+SET @contador = 0;
+
+UPDATE imagenes
+SET id = (@contador := @contador + 1);
+
+ALTER TABLE imagenes AUTO_INCREMENT = 1; -->
+
+
+
+
+

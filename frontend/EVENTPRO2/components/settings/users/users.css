@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --bodyBackground: #121212;
+    --containerBackground: #0b1d15;
+    --textColor: #ecf0f1;
+    --highlightBackground: linear-gradient(135deg, #00FF99, #009966);
+    --ledGlowColor: rgba(0, 255, 153, 0.5);
+    --openButtonColor: #007bff;
+    --openButtonBg: #003366;
+    --closeButtonColor: #ff6f61;
+    --closeButtonBg: #663333;
+    --homeButtonColor: #00ff99;
+    --homeButtonBg: #006633;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bodyBackground);
+    color: var(--textColor);
+    padding: 20px;
+}
+
+.title-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.title-container h1 {
+    font-size: 2.5rem;
+    background: var(--highlightBackground);
+    -webkit-background-clip: text;
+    color: transparent;
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+}
+
+.title-container h1::before {
+    left: 4px;
+}
+
+.title-container h1::after {
+    right: -5px;
+}
+
+.sensor-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.sensor-card {
+    background-color: var(--containerBackground);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+    transition: all 0.3s;
+    margin-top: 60px;
+}
+
+.sensor-card:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 153, 0.7);
+}
+
+.historical-data {
+    margin-top: 40px;
+    background-color: var(--containerBackground);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button {
+    border: .25em solid;
+    padding: 1em 3em;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 1em;
+    outline: none;
+    position: relative;
+    transition: all 0.3s;
+    text-shadow: 0 0 .5em;
+    color: var(--textColor);
+}
+
+button::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 120%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    filter: blur(2em);
+    opacity: .7;
+    transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+}
+
+button:hover {
+    color: var(--btn-color);
+    box-shadow: 0 0 1em .25em, 0 0 4em 2em, inset 0 0 .75em .25em;
+}
+
+button:active {
+    box-shadow: 0 0 0.6em .25em, 0 0 2.5em 2em, inset 0 0 .5em .25em;
+}
+
+.open-door {
+    --btn-color: var(--openButtonColor);
+    background-color: var(--openButtonBg);
+    border-color: var(--openButtonColor);
+    text-shadow: 0 0 .5em var(--openButtonColor);
+    box-shadow: 0 0 1em .25em var(--openButtonColor), 0 0 4em 1em rgba(0, 123, 255, 0.781), inset 0 0 .75em .25em var(--openButtonColor);
+}
+
+.open-door::after {
+    background-color: rgba(0, 123, 255, 0.67);
+}
+
+.close-door {
+    --btn-color: var(--closeButtonColor);
+    background-color: var(--closeButtonBg);
+    border-color: var(--closeButtonColor);
+    text-shadow: 0 0 .5em var(--closeButtonColor);
+    box-shadow: 0 0 1em .25em var(--closeButtonColor), 0 0 4em 1em rgba(255, 111, 97, 0.781), inset 0 0 .75em .25em var(--closeButtonColor);
+}
+
+.close-door::after {
+    background-color: rgba(255, 111, 97, 0.67);
+}
+
+.left-button {
+    margin-right: auto;
+}
+
+.right-button {
+    margin-left: auto;
+}
+
+.back-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.home-button {
+    --btn-color: var(--homeButtonColor);
+    background-color: var(--homeButtonBg);
+    border-color: var(--homeButtonColor);
+    text-shadow: 0 0 .5em var(--homeButtonColor);
+    box-shadow: 0 0 1em .25em var(--homeButtonColor), 0 0 4em 1em rgba(0, 255, 153, 0.781), inset 0 0 .75em .25em var(--homeButtonColor);
+}
+
+.home-button::after {
+    background-color: rgba(0, 255, 153, 0.781);
+}
+
+.table-container {
+    overflow-y: auto;
+    max-height: 400px;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+thead {
+    background-color: #333;
+    color: white;
+}
+
+th, td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.gauge {
+    margin-top: 20px;
+}

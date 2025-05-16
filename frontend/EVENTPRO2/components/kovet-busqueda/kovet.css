@@ -1,0 +1,1254 @@
+div.sticky {
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 0;
+    }
+    
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1.5px solid #ddd;
+    text-align: center;
+    position: sticky;
+}
+td[contenteditable="true"]:hover {
+    background-color: #d1d1d1;
+    cursor:text;
+}
+
+h1 {
+    text-align: center;
+}
+/* From Uiverse.io by Creatlydev */ 
+.button {
+    cursor: pointer;
+    border: none;
+    background: #7272e0;
+    color: white;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    display: grid;
+    place-content: center;
+    transition:
+      background 300ms,
+      transform 200ms;
+    font-weight: 600;
+  }
+  
+  .button__text {
+    position: absolute;
+    inset: 0;
+    animation: text-rotation 8s linear infinite;
+  
+    > span {
+      position: absolute;
+      transform: rotate(calc(19deg * var(--index)));
+      inset: 1px;
+    }
+  }
+  
+  .button__circle {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    background: white;
+    color: #7272e0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .button__icon {
+    transform: rotate(225deg); /* Rotamos la flecha para que mire hacia la izquierda */
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .button__icon--copy {
+    position: absolute;
+    transform: rotate(225deg);    
+  }
+  
+  .button:hover {
+    background: #737379;
+    transform: scale(1.05);
+    transform: rotate(225deg);
+  }
+  
+  .button:hover .button__icon {
+    color: #737379;
+  }
+  
+  .button:hover .button__icon:first-child {
+    transition: transform 0.3s ease-in-out;
+    transform: translate(150%, -150%);
+  }
+  
+  .button:hover .button__icon--copy {
+    transition: transform 0.3s ease-in-out 0.1s;
+    transform: translate(0);
+  }
+  
+  @keyframes text-rotation {
+    to {
+      rotate: 360deg;
+    }
+  }
+  
+
+.modal {
+    display:none;
+    position:fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    margin: 5% auto;
+    display:flex;
+    flex-direction: row; 
+    align-items: flex-start; 
+    background-color: #28283a; 
+    color: #dcdcdc; 
+    padding: 10px;
+    border-radius: 15px;
+    max-width: 700px; 
+    text-align: left; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    animation: fadeInScale 0.5s forwards, textGlow 2s infinite alternate, ledGlow 1.5s infinite alternate;
+    margin-top: 100px;
+    font-size: 13px;
+    
+}
+
+.modal-container {
+    display: flex;
+    flex-direction: row; 
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.modalInfo {
+    max-width: 100%;
+    text-align: left;
+    font-size: 14px;
+    margin-left: 15px;
+    margin-top: 25px;
+    color: white;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    word-wrap: break-word;                                                     
+    opacity: 0; 
+    animation: slideInModal 0.5s ease forwards;
+}
+
+/* Animación de entrada */
+@keyframes slideInModal {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Retrasos individuales para cada elemento interno */
+.modalInfo p:nth-child(1),
+.modalInfo span:nth-child(1),
+.modalInfo div:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.modalInfo p:nth-child(2),
+.modalInfo span:nth-child(2),
+.modalInfo div:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.modalInfo p:nth-child(3),
+.modalInfo span:nth-child(3),
+.modalInfo div:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* Animación para la entrada suave y aumento de tamaño */
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Efecto de resplandor para el texto */
+@keyframes textGlow {
+    0% {
+        text-shadow: 0 0 5px #444, 0 0 10px #444, 0 0 15px #444;
+    }
+    100% {
+        text-shadow: 0 0 10px #666, 0 0 20px #666, 0 0 30px #666;
+    }
+}
+
+/* Efecto de resplandor LED alrededor del modal */
+@keyframes ledGlow {
+    0% {
+        box-shadow: 0 0 15px #ffffff, 0 0 30px #ffffff, 0 0 45px #ffffff;
+    }
+    100% {
+        box-shadow: 0 0 15px #888888, 0 0 30px #888888, 0 0 45px #888888;
+    }
+}
+
+/* Estilo para el botón */
+.change {
+    background-color: #7272ca; 
+    color: #fff; 
+    padding: 10px 24px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    margin-left: auto;
+}
+
+.change:hover {
+    transform: scale(1.1); 
+    background-color: #4444b1; 
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.6);
+}
+
+.modal-image {
+    width: 290px; 
+    height: 290px; 
+    object-fit: contain; 
+    border-radius: 30px; 
+    background-color: white; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); 
+    margin: 10px auto; 
+    display: block; 
+    border: 2px solid #fff; 
+    margin-right: 10px;
+}
+
+.close {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    animation: text-glow 1.5s infinite alternate;
+}
+
+/* From Uiverse.io by Jaareet */ 
+.input {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-weight: 500;
+    font-size: .8vw;
+    color: black;
+    background-color: rgb(254, 254, 255);
+    box-shadow: 0 0 .4vw rgba(0, 0, 0, 0.5), 0 0 0 .15vw transparent;
+    border-radius: 0.4vw;
+    border: none;
+    outline: none;
+    padding: 0.4vw;
+    max-width: 190px;
+    transition: box-shadow 0.4s, transform 0.4s ease;
+    margin-left: 10px;
+}
+
+/* Efecto hover */
+.input:hover {
+    box-shadow: 0 0 0 .15vw rgba(135, 207, 235, 0.186);
+    transform: scale(1.05); 
+}
+
+.input:focus {
+    box-shadow: 0 0 0 .15vw rgb(44, 117, 117);
+    transform: scale(1.1); 
+    animation: glowEffect 2s ease-in-out infinite; 
+}
+
+@keyframes glowEffect {
+    0% {
+        box-shadow: 0 0 15px 4px #ffd1dc; 
+    }
+    75% {
+        box-shadow: 0 0 15px 4px #b0e0e6; 
+    }
+    75% {
+        box-shadow: 0 0 15px 4px #d8bfd8; 
+    }
+    75% {
+        box-shadow: 0 0 15px 4px #ffe4b5; 
+    }
+    100% {
+        box-shadow: 0 0 15px 4px #ffd1dc; 
+    }
+}
+
+  .s2, .s4, .s5, .s6, .s7, .s8 ,.s9 ,.digital{
+    font-weight: bold;
+    position:sticky; 
+    top: 0; 
+    background-color: white;  
+    z-index: 10;  
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+    .s9{
+        font-weight: bold;
+        padding: 50px;
+        z-index: 10;
+        position: sticky;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        vertical-align: middle;
+    }
+    .digital{
+        font-weight: bold;
+        padding: 50px;
+        z-index: 10;
+        position: sticky;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        vertical-align: middle;
+    }
+
+.borrar {
+    font-weight: bold;
+    position: sticky; 
+    top: 0; 
+    background-color: white;  
+    z-index: 10;  
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    color: #f31515;
+}
+
+/* From Uiverse.io by vinodjangid07 */ 
+.bin-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: rgb(255, 0, 0);
+    cursor: pointer;
+    border: 2px solid rgb(253, 253, 253);
+    transition-duration: 0.3s;
+    position: relative;
+    overflow: hidden;
+    margin-left: 15px;
+  }
+  .bin-bottom {
+    width: 15px;
+    z-index: 2;
+  }
+  .bin-top {
+    width: 17px;
+    transform-origin: right;
+    transition-duration: 0.3s;
+    z-index: 2;
+  }
+  .bin-button:hover .bin-top {
+    transform: rotate(45deg);
+  }
+  .bin-button:hover {
+    background-color: rgb(255, 0, 0);
+  }
+  .bin-button:active {
+    transform: scale(0.9);
+  }
+  .garbage {
+    position: absolute;
+    width: 14px;
+    height: auto;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  .bin-button:hover .garbage {
+    animation: throw 0.4s linear;
+  }
+  @keyframes throw {
+    from {
+      transform: translate(-400%, -700%);
+      opacity: 0;
+    }
+    to {
+      transform: translate(0%, 0%);
+      opacity: 1;
+    }
+  }
+  
+
+
+select {
+    background-color: transparent; 
+    color: black;  
+    border: 5px solid #ccc;  
+    padding: 5px; 
+    border-radius: 10px;
+}
+
+.image-bordered {
+    border: 5px solid #ccc; 
+    border-radius: 5px; 
+}
+
+.text{
+    font-weight:bolder;
+}
+
+.letter {
+    margin-top: 0px; 
+}
+
+/* From Uiverse.io by kennyotsu */ 
+
+  .loader {
+    color: rgb(124, 124, 124);
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 90px;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 120px;
+    padding: 10px 25px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-radius: 18px;
+    margin-left: 900px;
+  }
+  
+  .words {
+    overflow: hidden;
+    position: relative;
+  }
+  .words::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      var(--bg-color) 10%,
+      transparent 30%,
+      transparent 70%,
+      var(--bg-color) 90%
+    );
+    z-index: 20;
+  }
+  
+  .word {
+    display: block;
+    height: 100%;
+    padding-left: 6px;
+    color: #8f8df0;
+    animation: spin_4991 4s infinite;
+  }
+  
+  @keyframes spin_4991 {
+    10% {
+      -webkit-transform: translateY(-102%);
+      transform: translateY(-102%);
+    }
+  
+    25% {
+      -webkit-transform: translateY(-100%);
+      transform: translateY(-100%);
+    }
+  
+    35% {
+      -webkit-transform: translateY(-202%);
+      transform: translateY(-202%);
+    }
+  
+    50% {
+      -webkit-transform: translateY(-200%);
+      transform: translateY(-200%);
+    }
+  
+    60% {
+      -webkit-transform: translateY(-302%);
+      transform: translateY(-302%);
+    }
+  
+    75% {
+      -webkit-transform: translateY(-300%);
+      transform: translateY(-300%);
+    }
+  
+    85% {
+      -webkit-transform: translateY(-402%);
+      transform: translateY(-402%);
+    }
+  
+    100% {
+      -webkit-transform: translateY(-400%);
+      transform: translateY(-400%);
+    }
+  }
+  
+
+#modalImage {
+    border: 5px dashed white; 
+    padding: 10px; 
+    text-align: center; 
+    cursor: pointer; 
+    border-radius: 10px; 
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+#modalImage.drag-over {
+    border-color: black; 
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
+}
+        
+
+
+.paginacion-btn {
+    background-color: #bebdf7; 
+    color: #3330f0; 
+    border: 1px solid #8f8df0;
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    opacity: 0; 
+    margin-top: 220px;
+}
+
+/* Efecto hover */
+.paginacion-btn:hover {
+    background-color: #9a99ee; 
+    transform: scale(1.1); 
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    opacity: 1;
+}
+
+/* Efecto activo (cuando se hace clic) */
+.paginacion-btn:active {
+    background-color: #8f8df0; 
+    transform: scale(1.05); 
+}
+
+/* Animación de desvanecimiento al cargar */
+.paginacion-btn {
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+/* Animación de desvanecimiento */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Efecto de enfoque (cuando el botón está seleccionado) */
+.paginacion-btn:focus {
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(162, 212, 255, 0.5); 
+}
+
+/* Estilo del botón seleccionado (activo) */
+.paginacion-btn.seleccionado {
+    background-color: #5c5aec; 
+    color: white;
+    border: 2px solid #8f8df0; 
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2); 
+}
+
+.insert-modal {
+    display:none;
+    position:fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Estilos generales del modal */
+.modal-content-insert {
+    margin: 5% auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background-color: #28283a;
+    color: #dcdcdc;
+    padding: 70px;
+    border-radius: 15px;
+    max-width: 700px;
+    text-align: left;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    animation: fadeInScale 0.5s forwards, textGlow 2s infinite alternate, ledGlow 1.5s infinite alternate;
+    margin-top: 30px;
+    font-size: 13px;
+}
+
+/* Animación suave al hacer la transición entre los botones */
+.paginacion-btn {
+    transition: all 0.4s ease-in-out;
+}
+
+/* Columnas dentro del modal */
+.right-column {
+    margin-top: -400px;
+    padding-left: 350px;
+}
+
+/* Estilos cuando se detecta un archivo arrastrado */
+#dragArea.drag-over {
+    width: 45%;
+    height: 320px;
+    border: 5px dashed white;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+    cursor: auto;
+}
+
+/* Estilos para la imagen cargada */
+#previewImage {
+    width: 290px;
+    height: 290px;
+    object-fit: contain;
+    border-radius: 30px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+    display: block;
+    margin-left: 13px;
+    margin-top: 20px;
+    animation-delay: 0.3s;
+}
+
+/* Columna para el formulario */
+.right-column {
+    flex-grow: 1;
+}
+
+.right-column-Buscador {
+  flex-grow: 1;
+  margin-top: -360px;
+  display: block;
+  margin-left:390px;
+}
+
+
+/* Botón de cerrar */
+.InsertClose {
+    background-color: #7272ca;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.InsertClose:hover {
+    transform: scale(1.1);
+    background-color: #383888;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* Botón de enviar */
+.comic-button {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #31ca1d;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px #000;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position:absolute;
+  right: 40px;
+  bottom: 28px;
+}
+
+.comic-button:hover {
+    background-color: white;
+    color: #31ca1d;
+    border: 2px solid #31ca1d;
+    box-shadow: 5px 5px 0px #31ca1d;
+}
+
+.comic-button:active {
+    background-color: white;
+    box-shadow: none;
+    transform: translateY(4px);
+  }
+
+.titulo-insert{
+    margin-top: 150px;
+    color: white;
+}
+
+#formInsert {
+    margin-top: 60px;
+    margin-left: 30px;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+}
+
+/* Animación de entrada */
+@keyframes slideIn {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Elementos individuales del formulario */
+#formInsert input,
+#formInsert textarea,
+#formInsert label,
+#formInsert button {
+    width: 90%;
+    padding: 5px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    border: 1px  #fff; 
+    border-radius: 4px;
+    box-sizing: border-box;
+    animation: slideIn 0.5s ease forwards;
+    opacity: 0; 
+}
+
+/* Aplicar retraso para cada elemento */
+#formInsert label:nth-child(1),
+#formInsert input:nth-child(2) {
+    animation-delay: 0.1s;
+}
+#formInsert label:nth-child(3),
+#formInsert input:nth-child(4) {
+    animation-delay: 0.2s;
+}
+#formInsert label:nth-child(5),
+#formInsert textarea {
+    animation-delay: 0.3s;
+}
+#formInsert label:nth-child(7),
+#formInsert input:nth-child(8) {
+    animation-delay: 0.4s;
+}
+
+/* Botón del formulario */
+#formInsert button.enviar-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-right: 20px;
+    animation-delay: 0.5s;
+}
+
+/* Hover del botón */
+#formInsert button.enviar-btn:hover {
+    background-color: #45a049;
+}
+
+/* Estilo de enfoque para los campos */
+#formInsert input:focus,
+#formInsert textarea:focus {
+    border-color: #0e81df;
+    outline: none;
+}
+
+.right-column{
+    margin-top: -450px;
+    display: block;
+}
+
+.left-column h2 {
+    color: white;
+    margin-left: 25px;
+    text-shadow: 
+        0 0 5px #fff,   
+        0 0 10px #fff,  
+        0 0 20px #fff, 
+        0 0 40px #fff, 
+        0 0 80px #fff;  
+    font-weight: bold;
+    font-size: 25px;
+    animation: glow 1.5s infinite alternate;
+}
+
+/* Animación del efecto LED */
+@keyframes glow {
+    0% {
+        text-shadow: 
+            0 0 20px #fff, 
+            0 0 40px #fff;
+    }
+    100% {
+        text-shadow: 
+            0 0 30px #fff, 
+            0 0 60px #fff;
+    }
+}
+
+/* Modal - Responsividad */
+@media screen and (max-width: 768px) {
+    .modal-content-insert {
+        width: 90%;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    #dragArea {
+        width: 90%;
+        height: 250px;
+    }
+
+    #previewImage {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .right-column {
+        padding-left: 0;
+        margin-top: 0;
+    }
+
+    .InsertClose {
+        top: 15px;
+        right: 15px;
+        font-size: 14px;
+    }
+
+    .enviar-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    #formInsert {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    #formInsert input,
+    #formInsert textarea {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .modal-content-insert {
+        width: 95%;
+        padding: 15px;
+        margin-top: 10px;
+    }
+
+    #dragArea {
+        width: 100%;
+        height: 200px;
+    }
+
+    #previewImage {
+        width: 100%;
+        height: auto;
+    }
+
+    .InsertClose {
+        top: 10px;
+        right: 10px;
+        font-size: 12px;
+    }
+
+    .enviar-btn {
+        width: 100%;
+        padding: 10px 0;
+        font-size: 14px;
+    }
+
+    #formInsert {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    #formInsert input,
+    #formInsert textarea {
+        width: 100%;
+    }
+}
+
+/* From Uiverse.io by Gautammsharma */ 
+.input__container--variant {
+    background: linear-gradient(to bottom, #F3FFF9, #F3FFF9);
+    border-radius: 30px;
+    max-width: 13em;
+    padding: 1em 1em;
+    margin-left: 200px;
+    margin-top: -120px;
+  }
+  
+  .shadow__input--variant {
+    filter: blur(25px);
+    border-radius: 30px;
+    background-color: #F3FFF9;
+    opacity: 0.5;
+  }
+  
+  .input__button__shadow--variant {
+    border-radius: 15px;
+    background-color: #383888;
+    padding: 10px;
+    border: none;
+  }
+  
+  .input__button__shadow--variant:hover {
+    background-color: #7474ca;
+  }
+  
+  .input__search--variant {
+    width: 13em;
+    align-items: center;
+    border-radius: 13em;
+    outline: none;
+    border: none;
+    padding: 0.8em;
+    font-size: 1.2em;
+    color: #383888;
+    background-color: transparent;
+  }
+  
+  .input__search--variant::placeholder {
+    color: #383888;
+    opacity: 0.7;
+  }
+  
+  .input__container--variant {
+    background: linear-gradient(to bottom, #F3FFF9, #F3FFF9);
+    border-radius: 1.5em;
+    max-width: 14em;
+    padding: 1em;
+    box-shadow: 0em 1em 3em #beecdc64;
+  }
+  
+
+/* -------------------------------------------------------------------------------------------
+//botton de crear
+/* From Uiverse.io by Gaurang7717 */ 
+.Btn {
+    width: 50px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    position: relative;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .svgContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    backdrop-filter: blur(4px);
+    letter-spacing: 0.8px;
+    border-radius: 10px;
+    transition: all 0.3s;
+
+  }
+  
+  .BG {
+    position: absolute;
+    content: "";
+    width: 77%;
+    height: 100%;
+    background: #00d757;
+    background: #00d757;
+    background: #00d757;
+    background: #00d757;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+    z-index: -1;
+    border-radius: 9px;
+    pointer-events: none;
+    transition: all 0.3s;
+  }
+  
+  .Btn:hover .BG {
+    transform: rotate(35deg);
+    transform-origin: bottom;
+  }
+  
+  .Btn:hover .svgContainer {
+    background-color: rgba(156, 156, 156, 0.466);
+  }
+
+/*----------------------------------------------------------------------------------------------------------------------------------------
+Bottton para buscar */
+.Btn-Buscador {
+    width: 50px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    position: relative;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.3s;
+    transform: translateY(-35px);
+    margin-left: 60px;
+  }
+  
+  .svgContainer-Buscador {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    backdrop-filter: blur(4px);
+    letter-spacing: 0.8px;
+    border-radius: 10px;
+    transition: all 0.3s;
+
+  }
+  
+  .BG-Buscador {
+    position: absolute;
+    content: "";
+    width: 77%;
+    height: 100%;
+    background: #1976d2;
+    background: #1976d2;
+    background: #1976d2;
+    background: #1976d2;
+    z-index: -1;
+    border-radius: 9px;
+    pointer-events: none;
+    transition: all 0.3s;
+  }
+  
+  .Btn-Buscador:hover .BG-Buscador {
+    transform: rotate(35deg);
+    transform-origin: bottom;
+  }
+  
+  .Btn-Buscador:hover .svgContainer-Buscador {
+    background-color: rgba(156, 156, 156, 0.466);
+  }
+
+
+
+
+
+
+  /* From Uiverse.io by 3bdel3ziz-T */ 
+.container {
+  --transition: 350ms;
+  --folder-W: 120px;
+  --folder-H: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  padding: 10px;
+  background: linear-gradient(135deg, #6dd5ed, #2193b0);
+  border-radius: 15px;
+  -webkit-box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  height: calc(var(--folder-H) * 1.7);
+  position: relative;
+  width: 200px;
+  margin-left: 50px;
+  margin-top: 70px;
+}
+
+.folder {
+  position: absolute;
+  top: -20px;
+  left: calc(50% - 60px);
+  animation: float 2.5s infinite ease-in-out;
+  transition: transform var(--transition) ease;
+}
+
+.folder:hover {
+  transform: scale(1.05);
+}
+
+.folder .front-side,
+.folder .back-side {
+  position: absolute;
+  transition: transform var(--transition);
+  transform-origin: bottom center;
+}
+
+.folder .back-side::before,
+.folder .back-side::after {
+  content: "";
+  display: block;
+  background-color: white;
+  opacity: 0.5;
+  z-index: 0;
+  width: var(--folder-W);
+  height: var(--folder-H);
+  position: absolute;
+  transform-origin: bottom center;
+  border-radius: 15px;
+  transition: transform 350ms;
+  z-index: 0;
+}
+
+.container:hover .back-side::before {
+  transform: rotateX(-5deg) skewX(5deg);
+}
+.container:hover .back-side::after {
+  transform: rotateX(-15deg) skewX(12deg);
+}
+
+.folder .front-side {
+  z-index: 1;
+}
+
+.container:hover .front-side {
+  transform: rotateX(-40deg) skewX(15deg);
+}
+
+.folder .tip {
+  background: linear-gradient(135deg, #ff9a56, #ff6f56);
+  width: 80px;
+  height: 20px;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: -10px;
+  z-index: 2;
+}
+
+.folder .cover {
+  background: linear-gradient(135deg, #ffe563, #ffc663);
+  width: var(--folder-W);
+  height: var(--folder-H);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.custom-file-upload {
+  font-size: 1.1em;
+  color: #ffffff;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background var(--transition) ease;
+  display: inline-block;
+  width: 100%;
+  padding: 15px 5px;
+  position: relative;
+}
+
+.custom-file-upload:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.custom-file-upload input[type="file"] {
+  display: none;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
